@@ -45,6 +45,7 @@ jobs:
         docker_image:
           - noetic
           - melodic
+          - melodic_22
           - humble
           - humble-cuda
           - galactic

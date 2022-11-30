@@ -6,17 +6,19 @@ See [the docs](https://athackst.github.io/dockerfiles) or read about  [how I dev
 ## Usage
 
 ```bash
-docker pull althack/ros:noetic-base
+docker pull althack/ros:noetic-build_source
 ```
 
 ## Organization
 
 The main docker image tags are:
 
+* [noetic-build_source](https://github.com/athackst/dockerfiles/blob/main/ros/noetic.Dockerfile)
 * [noetic-base](https://github.com/athackst/dockerfiles/blob/main/ros/noetic.Dockerfile)
 * [noetic-dev](https://github.com/athackst/dockerfiles/blob/main/ros/noetic.Dockerfile)
 * [noetic-full](https://github.com/athackst/dockerfiles/blob/main/ros/noetic.Dockerfile)
 * [noetic-gazebo](https://github.com/athackst/dockerfiles/blob/main/ros/noetic.Dockerfile)
+* [melodic-build_source](https://github.com/athackst/dockerfiles/blob/main/ros/melodic.Dockerfile)
 * [melodic-base](https://github.com/athackst/dockerfiles/blob/main/ros/melodic.Dockerfile)
 * [melodic-dev](https://github.com/athackst/dockerfiles/blob/main/ros/melodic.Dockerfile)
 * [melodic-full](https://github.com/athackst/dockerfiles/blob/main/ros/melodic.Dockerfile)
@@ -29,6 +31,7 @@ The main docker image tags are:
 * [kinetic-dev](https://github.com/athackst/dockerfiles/blob/main/ros/kinetic.Dockerfile) (eol)
 * [kinetic-full](https://github.com/athackst/dockerfiles/blob/main/ros/kinetic.Dockerfile) (eol)
 * [kinetic-gazebo](https://github.com/athackst/dockerfiles/blob/main/ros/kinetic.Dockerfile) (eol)
+* [melodic_22-build_source](https://github.com/athackst/dockerfiles/blob/main/ros/melodic_22.Dockerfile)
 
 Each image is additionally tagged with the date of creation, which lets you peg to a specific version of packages.
 

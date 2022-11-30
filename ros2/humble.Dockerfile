@@ -5,6 +5,83 @@
 ###########################################
 # Base image 
 ###########################################
+FROM ubuntu:22.04 AS build_source
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install language
+RUN apt-get update && apt-get install -y \
+  locales \
+  && locale-gen en_US.UTF-8 \
+  && update-locale LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 \
+  && rm -rf /var/lib/apt/lists/*
+ENV LANG en_US.UTF-8
+
+# Install timezone
+RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
+  && export DEBIAN_FRONTEND=noninteractive \
+  && apt-get update \
+  && apt-get install -y tzdata \
+  && dpkg-reconfigure --frontend noninteractive tzdata \
+  && rm -rf /var/lib/apt/lists/*
+
+# Add the ROS 2 apt repository
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg2 \
+    lsb-release \
+    sudo \
+  && curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg \
+  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null 
+# Install development tools and ROS tools
+RUN && apt-get update && apt-get install -y \
+    python3-flake8-docstrings \
+    python3-pip \
+    python3-pytest-cov \
+    python3-argcomplete \
+    ros-dev-tools \
+&& apt install -y \
+        python3-flake8-blind-except \
+        python3-flake8-builtins \
+        python3-flake8-class-newline \
+        python3-flake8-comprehensions \
+        python3-flake8-deprecated \
+        python3-flake8-import-order \
+        python3-flake8-quotes \
+        python3-pytest-repeat \
+        python3-pytest-rerunfailures \
+  && rm -rf /var/lib/apt/lists/*
+
+# Get ROS 2 code
+RUN mkdir -p ~/ros2_humble/src \
+  && cd ~/ros2_humble \
+  && wget https://raw.githubusercontent.com/ros2/ros2/humble/ros2.repos \
+  && vcs import src < ros2.repos
+
+# Install dependencies using rosdep
+
+RUN apt upgrade \
+    && rosdep init \
+    && rosdep update \
+    && rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-6.0.1 urdfdom_headers"
+
+# Build the code
+RUN cd ~/ros2_humble \
+  && colcon build --symlink-install --install-base /opt/ros/humble --cmake-args -DCMAKE_BUILD_TYPE=Release
+  
+ENV ROS_DISTRO=humble
+ENV AMENT_PREFIX_PATH=/opt/ros/humble
+ENV COLCON_PREFIX_PATH=/opt/ros/humble
+ENV LD_LIBRARY_PATH=/opt/ros/humble/lib
+ENV PATH=/opt/ros/humble/bin:$PATH
+ENV PYTHONPATH=/opt/ros/humble/lib/python3.10/site-packages
+ENV ROS_PYTHON_VERSION=3
+ENV ROS_VERSION=2
+ENV DEBIAN_FRONTEND=
+
+###########################################
+# Base image 
+###########################################
 FROM ubuntu:22.04 AS base
 
 ENV DEBIAN_FRONTEND=noninteractive

@@ -5,7 +5,7 @@
 ###########################################
 # Base image from source
 ###########################################
-FROM ubuntu:18.04 AS build_source
+FROM ubuntu:22.04 AS build_source
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -81,7 +81,7 @@ ENV DEBIAN_FRONTEND=
 ###########################################
 # Base image 
 ###########################################
-FROM ubuntu:18.04 AS base
+FROM ubuntu:22.04 AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 

@@ -27,8 +27,7 @@ RUN && apt-get update && apt-get install -y \
     python3-pip \
     python3-pytest-cov \
     python3-argcomplete \
-    ros-dev-tools
-
+    ros-dev-tools \
 {% if "22.04" in image_version -%}
     && apt install -y \
         python3-flake8-blind-except \
@@ -39,7 +38,7 @@ RUN && apt-get update && apt-get install -y \
         python3-flake8-import-order \
         python3-flake8-quotes \
         python3-pytest-repeat \
-        python3-pytest-rerunfailures 
+        python3-pytest-rerunfailures \
 {%- else -%}
     && python3 -m pip install -U \
         flake8-blind-except \
@@ -50,7 +49,7 @@ RUN && apt-get update && apt-get install -y \
         flake8-import-order \
         flake8-quotes \
         pytest-repeat \
-        pytest-rerunfailures
+        pytest-rerunfailures \
 {%- endif %}
   && rm -rf /var/lib/apt/lists/*
 
@@ -65,7 +64,7 @@ RUN mkdir -p ~/ros2_{{ ros_distro }}/src \
 RUN apt upgrade \
     && rosdep init \
     && rosdep update \
-    && rosdep install --from-paths src --ignore-src -y --skip-keys fastcdr rti-connext-dds-{% if ros_distro == "humble" -%}6.0.1{-% else -%}5.3.1{% endif %} urdfdom_headers
+    && rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-{% if ros_distro == "humble" -%}6.0.1{%- else -%}5.3.1{%- endif %} urdfdom_headers"
 
 # Build the code
 RUN cd ~/ros2_{{ ros_distro }} \

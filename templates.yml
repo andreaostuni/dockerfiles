@@ -43,6 +43,13 @@ ros:
     python_version: "2.7"
     ubuntu_distro: "16.04"
     eol: true
+  - name: melodic_22
+    ros_distro: melodic
+    targets:
+      - build_source
+    python_env: ""
+    python_version: "2.7"
+    ubuntu_distro: "22.04"
 ros2:
   - name: humble
     ros_distro: humble

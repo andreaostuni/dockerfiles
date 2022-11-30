@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
     python{{ python_env }}-pip \
     build-essential \
   && rm -rf /var/lib/apt/lists/* \
-  && rosdep init || echo "rosdep already initialized"
+  && rosdep init || echo "rosdep already initialized" \
   && rosdep update
 
 # Create a catkin Workspace
@@ -48,7 +48,7 @@ RUN rosdep install --from-paths src --ignore-src --rosdistro {{ ros_distro }} -y
     && rm -rf /var/lib/apt/lists/*
 
 # Building the catkin Workspace
-./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/{{ ros_distro }}
+RUN ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/{{ ros_distro }}
 
 # Setup environment
 ENV LD_LIBRARY_PATH=/opt/ros/{{ ros_distro }}/lib

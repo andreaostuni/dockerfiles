@@ -89,6 +89,7 @@
       "options": [
         "noetic",
         "melodic",
+        "melodic_22",
         "humble",
         "humble-cuda",
         "galactic",
