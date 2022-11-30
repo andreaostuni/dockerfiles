@@ -3,6 +3,70 @@
 #############################################
 
 ###########################################
+# Base image from source
+###########################################
+FROM ubuntu:{{ ubuntu_distro }} AS build_source
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+{% include 'snippits/language.jinja' %}
+
+{% include 'snippits/timezone.jinja' %}
+
+# Install ROS
+RUN apt-get update && apt-get install -y \
+    curl \
+    dirmngr \
+    gnupg2 \
+    lsb-release \
+    sudo \
+  && sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list' \
+  && curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - \
+  && apt-get update \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN apt-get update && apt-get install -y \
+    python{{ python_env }}-rosdep \
+    python{{ python_env }}-rosinstall \
+    python{{ python_env }}-rosinstall-generator \
+    python{{ python_env }}-vcstool \
+    python{{ python_env }}-pip \
+    build-essential \
+  && rm -rf /var/lib/apt/lists/* \
+  && rosdep init || echo "rosdep already initialized"
+  && rosdep update
+
+# Create a catkin Workspace
+
+RUN mkdir ~/ros_catkin_ws \
+    && cd ~/ros_catkin_ws \
+    && rosinstall_generator ros_comm --rosdistro {{ ros_distro }} --deps --tar > {{ ros_distro }}-ros_comm.rosinstall \
+    && vcs import src < melodic-ros_comm.rosinstall
+
+# Resolving Dependencies
+RUN rosdep install --from-paths src --ignore-src --rosdistro {{ ros_distro }} -y \
+    && rm -rf /var/lib/apt/lists/*
+
+# Building the catkin Workspace
+./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/{{ ros_distro }}
+
+# Setup environment
+ENV LD_LIBRARY_PATH=/opt/ros/{{ ros_distro }}/lib
+ENV ROS_DISTRO={{ ros_distro }}
+ENV ROS_ROOT=/opt/ros/{{ ros_distro }}/share/ros
+ENV ROS_PACKAGE_PATH=/opt/ros/{{ ros_distro }}/share
+ENV ROS_MASTER_URI=http://localhost:11311
+ENV ROS_PYTHON_VERSION={{ python_env }}
+ENV ROS_VERSION=1
+ENV PATH=/opt/ros/{{ ros_distro }}/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+ENV ROSLISP_PACKAGE_DIRECTORIES=
+ENV PYTHONPATH=/opt/ros/{{ ros_distro }}/lib/python{{ python_version }}/dist-packages
+ENV PKG_CONFIG_PATH=/opt/ros/{{ ros_distro }}/lib/pkgconfig
+ENV ROS_ETC_DIR=/opt/ros/{{ ros_distro }}/etc/ros
+ENV CMAKE_PREFIX_PATH=/opt/ros/{{ ros_distro }}
+ENV DEBIAN_FRONTEND=
+
+###########################################
 # Base image 
 ###########################################
 FROM ubuntu:{{ ubuntu_distro }} AS base

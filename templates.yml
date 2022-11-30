@@ -1,8 +1,8 @@
 ros:
-  - 
-    name: noetic
+  - name: noetic
     ros_distro: noetic
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -10,10 +10,10 @@ ros:
     python_env: "3"
     python_version: "3"
     ubuntu_distro: "20.04"
-  - 
-    name: melodic
+  - name: melodic
     ros_distro: melodic
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -21,8 +21,7 @@ ros:
     python_env: ""
     python_version: "2.7"
     ubuntu_distro: "18.04"
-  - 
-    name: lunar
+  - name: lunar
     ros_distro: lunar
     targets:
       - base
@@ -33,8 +32,7 @@ ros:
     python_version: "2.7"
     ubuntu_distro: "18.04"
     eol: true
-  - 
-    name: kinetic
+  - name: kinetic
     ros_distro: kinetic
     targets:
       - base
@@ -46,10 +44,10 @@ ros:
     ubuntu_distro: "16.04"
     eol: true
 ros2:
-  - 
-    name: humble
+  - name: humble
     ros_distro: humble
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -57,10 +55,10 @@ ros2:
     python_version: "3.10"
     base_image: "ubuntu"
     image_version: "22.04"
-  - 
-    name: humble-cuda
+  - name: humble-cuda
     ros_distro: humble
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -68,10 +66,10 @@ ros2:
     python_version: "3.10"
     base_image: "nvidia/cuda"
     image_version: "11.7.0-runtime-ubuntu22.04"
-  - 
-    name: galactic
+  - name: galactic
     ros_distro: galactic
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -79,10 +77,10 @@ ros2:
     python_version: "3.8"
     base_image: "ubuntu"
     image_version: "20.04"
-  -
-    name: galactic-cuda
+  - name: galactic-cuda
     ros_distro: galactic
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -90,10 +88,10 @@ ros2:
     python_version: "3.8"
     base_image: "nvidia/cuda"
     image_version: "11.7.0-runtime-ubuntu20.04"
-  - 
-    name: foxy
+  - name: foxy
     ros_distro: foxy
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -101,10 +99,10 @@ ros2:
     python_version: "3.8"
     base_image: "ubuntu"
     image_version: "20.04"
-  - 
-    name: foxy-cuda
+  - name: foxy-cuda
     ros_distro: foxy
     targets:
+      - build_source
       - base
       - dev
       - full
@@ -112,8 +110,7 @@ ros2:
     python_version: "3.8"
     base_image: "nvidia/cuda"
     image_version: "11.7.0-runtime-ubuntu20.04"
-  - 
-    name: eloquent
+  - name: eloquent
     ros_distro: eloquent
     targets:
       - base
@@ -124,8 +121,7 @@ ros2:
     base_image: "ubuntu"
     image_version: "18.04"
     eol: true
-  - 
-    name: dashing
+  - name: dashing
     ros_distro: dashing
     targets:
       - base
@@ -137,32 +133,28 @@ ros2:
     image_version: "18.04"
     eol: true
 gazebo:
-  - 
-    name: gazebo11
+  - name: gazebo11
     gazebo_release: "11"
     targets:
       - base
       - dev
       - nvidia
     ubuntu_distro: "20.04"
-  - 
-    name: gazebo10
+  - name: gazebo10
     gazebo_release: "10"
     targets:
       - base
       - dev
     ubuntu_distro: "18.04"
     eol: true
-  - 
-    name: gazebo9
+  - name: gazebo9
     gazebo_release: "9"
     targets:
       - base
       - dev
     ubuntu_distro: "18.04"
 ignition:
-  - 
-    name: fortress
+  - name: fortress
     ign_distro: fortress
     targets:
       - base
@@ -170,8 +162,7 @@ ignition:
       - nvidia
     gazebo_version: "6"
     ubuntu_distro: "20.04"
-  - 
-    name: edifice
+  - name: edifice
     ign_distro: edifice
     targets:
       - base
@@ -180,8 +171,7 @@ ignition:
     gazebo_version: "5"
     ubuntu_distro: "20.04"
     eol: true
-  - 
-    name: dome
+  - name: dome
     ign_distro: dome
     targets:
       - base
@@ -189,8 +179,7 @@ ignition:
       - nvidia
     gazebo_version: "4"
     ubuntu_distro: "18.04"
-  - 
-    name: citadel
+  - name: citadel
     ign_distro: citadel
     targets:
       - base
@@ -199,8 +188,7 @@ ignition:
     gazebo_version: "3"
     ubuntu_distro: "18.04"
 gz:
-  - 
-    name: garden
+  - name: garden
     gz_distro: garden
     targets:
       - base

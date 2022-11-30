@@ -5,6 +5,85 @@
 ###########################################
 # Base image 
 ###########################################
+FROM {{ base_image }}:{{ image_version }} AS build_source
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+{% include 'snippits/language.jinja' %}
+
+{% include 'snippits/timezone.jinja' %}
+
+# Add the ROS 2 apt repository
+RUN apt-get update && apt-get install -y \
+    curl \
+    gnupg2 \
+    lsb-release \
+    sudo \
+  && curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg \
+  && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null 
+# Install development tools and ROS tools
+RUN && apt-get update && apt-get install -y \
+    python3-flake8-docstrings \
+    python3-pip \
+    python3-pytest-cov \
+    python3-argcomplete \
+    ros-dev-tools
+
+{% if "22.04" in image_version -%}
+    && apt install -y \
+        python3-flake8-blind-except \
+        python3-flake8-builtins \
+        python3-flake8-class-newline \
+        python3-flake8-comprehensions \
+        python3-flake8-deprecated \
+        python3-flake8-import-order \
+        python3-flake8-quotes \
+        python3-pytest-repeat \
+        python3-pytest-rerunfailures 
+{%- else -%}
+    && python3 -m pip install -U \
+        flake8-blind-except \
+        flake8-builtins \
+        flake8-class-newline \
+        flake8-comprehensions \
+        flake8-deprecated \
+        flake8-import-order \
+        flake8-quotes \
+        pytest-repeat \
+        pytest-rerunfailures
+{%- endif %}
+  && rm -rf /var/lib/apt/lists/*
+
+# Get ROS 2 code
+RUN mkdir -p ~/ros2_{{ ros_distro }}/src \
+  && cd ~/ros2_{{ ros_distro }} \
+  && wget https://raw.githubusercontent.com/ros2/ros2/{{ ros_distro }}/ros2.repos \
+  && vcs import src < ros2.repos
+
+# Install dependencies using rosdep
+
+RUN apt upgrade \
+    && rosdep init \
+    && rosdep update \
+    && rosdep install --from-paths src --ignore-src -y --skip-keys fastcdr rti-connext-dds-{% if ros_distro == "humble" -%}6.0.1{-% else -%}5.3.1{% endif %} urdfdom_headers
+
+# Build the code
+RUN cd ~/ros2_{{ ros_distro }} \
+  && colcon build --symlink-install --install-base /opt/ros/{{ ros_distro }} --cmake-args -DCMAKE_BUILD_TYPE=Release
+  
+ENV ROS_DISTRO={{ ros_distro }}
+ENV AMENT_PREFIX_PATH=/opt/ros/{{ ros_distro }}
+ENV COLCON_PREFIX_PATH=/opt/ros/{{ ros_distro }}
+ENV LD_LIBRARY_PATH=/opt/ros/{{ ros_distro }}/lib
+ENV PATH=/opt/ros/{{ ros_distro }}/bin:$PATH
+ENV PYTHONPATH=/opt/ros/{{ ros_distro }}/lib/python{{ python_version }}/site-packages
+ENV ROS_PYTHON_VERSION=3
+ENV ROS_VERSION=2
+ENV DEBIAN_FRONTEND=
+
+###########################################
+# Base image 
+###########################################
 FROM {{ base_image }}:{{ image_version }} AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
