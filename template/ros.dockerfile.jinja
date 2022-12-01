@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 {% include 'snippits/timezone.jinja' %}
 
-# Install ROS
+# Install ROS Dependencies
 RUN apt-get update && apt-get install -y \
     curl \
     dirmngr \
@@ -40,6 +40,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir ~/ros_catkin_ws \
     && cd ~/ros_catkin_ws \
+    && mkdir src \
     && rosinstall_generator ros_comm --rosdistro {{ ros_distro }} --deps --tar > {{ ros_distro }}-ros_comm.rosinstall \
     && vcs import src < melodic-ros_comm.rosinstall
 
