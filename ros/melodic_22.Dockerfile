@@ -25,7 +25,7 @@ RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
   && dpkg-reconfigure --frontend noninteractive tzdata \
   && rm -rf /var/lib/apt/lists/*
 
-# Install ROS
+# Install ROS Dependencies
 RUN apt-get update && apt-get install -y \
     curl \
     dirmngr \
@@ -52,6 +52,7 @@ RUN apt-get update && apt-get install -y \
 
 RUN mkdir ~/ros_catkin_ws \
     && cd ~/ros_catkin_ws \
+    && mkdir src \
     && rosinstall_generator ros_comm --rosdistro melodic --deps --tar > melodic-ros_comm.rosinstall \
     && vcs import src < melodic-ros_comm.rosinstall
 
