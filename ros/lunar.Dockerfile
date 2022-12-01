@@ -26,7 +26,7 @@ RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
   && rm -rf /var/lib/apt/lists/*
 
 # Install ROS Dependencies
-RUN apt-get update && apt-get install -y \
+RUN apt-get update && apt-get upgrade -y && apt-get install -y \
     curl \
     dirmngr \
     gnupg2 \
@@ -56,7 +56,7 @@ RUN mkdir ~/ros_catkin_ws \
     && cd ~/ros_catkin_ws \
     && mkdir src \
     && rosinstall_generator ros_comm --rosdistro lunar --deps --tar > lunar-ros_comm.rosinstall \
-    && vcs import src < melodic-ros_comm.rosinstall
+    && vcs import src < lunar-ros_comm.rosinstall
 
 # Resolving Dependencies
 RUN cd ~/ros_catkin_ws \
