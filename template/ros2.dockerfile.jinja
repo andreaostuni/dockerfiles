@@ -63,7 +63,7 @@ RUN mkdir -p ~/ros2_{{ ros_distro }}/src \
 # Install dependencies using rosdep
 
 RUN apt-get update \
-    && apt upgrade \
+    && apt upgrade -y\
     && cd ~/ros2_{{ ros_distro }} \
     && rosdep init \
     && rosdep update \
