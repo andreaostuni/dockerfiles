@@ -57,7 +57,9 @@ RUN mkdir ~/ros_catkin_ws \
     && vcs import src < melodic-ros_comm.rosinstall
 
 # Resolving Dependencies
-RUN rosdep install --from-paths src --ignore-src --rosdistro melodic -y \
+RUN cd ~/ros_catkin_ws \
+    && pwd \
+    && rosdep install --from-paths src --ignore-src --rosdistro melodic -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Building the catkin Workspace

@@ -61,8 +61,10 @@ RUN mkdir -p ~/ros2_{{ ros_distro }}/src \
 # Install dependencies using rosdep
 
 RUN apt upgrade \
+    && cd ~/ros2_{{ ros_distro }} \
     && rosdep init \
     && rosdep update \
+    && echo ${pwd}
     && rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-{% if ros_distro == "humble" -%}6.0.1{%- else -%}5.3.1{%- endif %} urdfdom_headers"
 
 # Build the code

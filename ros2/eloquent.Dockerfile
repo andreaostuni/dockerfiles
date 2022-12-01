@@ -61,8 +61,10 @@ RUN mkdir -p ~/ros2_eloquent/src \
 # Install dependencies using rosdep
 
 RUN apt upgrade \
+    && cd ~/ros2_eloquent \
     && rosdep init \
     && rosdep update \
+    && echo ${pwd}
     && rosdep install --from-paths src --ignore-src -y --skip-keys "fastcdr rti-connext-dds-5.3.1 urdfdom_headers"
 
 # Build the code
