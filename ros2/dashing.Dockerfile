@@ -60,7 +60,8 @@ RUN mkdir -p ~/ros2_dashing/src \
 
 # Install dependencies using rosdep
 
-RUN apt upgrade \
+RUN apt-get update \
+    && apt upgrade \
     && cd ~/ros2_dashing \
     && rosdep init \
     && rosdep update \
