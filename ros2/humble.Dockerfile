@@ -62,7 +62,7 @@ RUN mkdir -p ~/ros2_humble/src \
 # Install dependencies using rosdep
 
 RUN apt-get update \
-    && apt upgrade \
+    && apt upgrade -y\
     && cd ~/ros2_humble \
     && rosdep init \
     && rosdep update \

@@ -60,13 +60,11 @@ RUN mkdir ~/ros_catkin_ws \
 
 # Resolving Dependencies
 RUN cd ~/ros_catkin_ws \
-    && apt-get update \
-    && pwd \
     && rosdep install --from-paths src --ignore-src --rosdistro melodic -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Building the catkin Workspace
-RUN ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
+RUN ~/ros_catkin_ws/src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/melodic
 
 # Setup environment
 ENV LD_LIBRARY_PATH=/opt/ros/melodic/lib

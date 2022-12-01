@@ -63,7 +63,7 @@ RUN mkdir -p ~/ros2_eloquent/src \
 # Install dependencies using rosdep
 
 RUN apt-get update \
-    && apt upgrade \
+    && apt upgrade -y\
     && cd ~/ros2_eloquent \
     && rosdep init \
     && rosdep update \
