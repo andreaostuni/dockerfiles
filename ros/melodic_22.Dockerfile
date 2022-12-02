@@ -33,8 +33,8 @@ RUN apt-get update && apt-get install -y \
     gnupg2 \
     lsb-release \
     apt-utils \
-    sudo deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
-    deb-src http://deb.debian.org/debian-security/ bullseye-security main contrib non-free&& curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - \
+    sudo 
+  && curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - \
   && apt install -y software-properties-common \
   && add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ $(lsb_release -sc) main universe multiverse restricted" \
   && add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ $(lsb_release -sc)-updates main universe multiverse restricted" \ 
