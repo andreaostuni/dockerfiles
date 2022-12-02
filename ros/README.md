@@ -31,7 +31,7 @@ The main docker image tags are:
 * [kinetic-dev](https://github.com/athackst/dockerfiles/blob/main/ros/kinetic.Dockerfile) (eol)
 * [kinetic-full](https://github.com/athackst/dockerfiles/blob/main/ros/kinetic.Dockerfile) (eol)
 * [kinetic-gazebo](https://github.com/athackst/dockerfiles/blob/main/ros/kinetic.Dockerfile) (eol)
-* [melodic_22-build_source](https://github.com/athackst/dockerfiles/blob/main/ros/melodic_22.Dockerfile)
+* [melodic_22-base](https://github.com/athackst/dockerfiles/blob/main/ros/melodic_22.Dockerfile)
 
 Each image is additionally tagged with the date of creation, which lets you peg to a specific version of packages.
 

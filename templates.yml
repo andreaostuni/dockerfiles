@@ -46,7 +46,7 @@ ros:
   - name: melodic_22
     ros_distro: melodic
     targets:
-      - build_source
+      - base
     python_env: ""
     python_version: "2.7"
     ubuntu_distro: "22.04"
