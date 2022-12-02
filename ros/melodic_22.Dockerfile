@@ -42,6 +42,8 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 # apt installs
+RUN apt-get update -y
+RUN apt-get upgrade -y
 RUN apt install -y git
 RUN apt install -y ros-*
 RUN apt install -y catkin-lint cython3 libapriltag-dev libceres-dev libfrei0r-ocaml-dev
