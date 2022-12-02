@@ -48,7 +48,7 @@ ros:
     targets:
       - base
     python_env: ""
-    python_version: "2.7"
+    python_version: "3"
     ubuntu_distro: "22.04"
 ros2:
   - name: humble
