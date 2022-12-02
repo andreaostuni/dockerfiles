@@ -33,7 +33,7 @@ RUN apt-get update && apt-get install -y \
     gnupg2 \
     lsb-release \
     apt-utils \
-    sudo \ 
+    sudo \
   && curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - \
   && apt install -y software-properties-common \
   && add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ $(lsb_release -sc) main universe multiverse restricted" \
