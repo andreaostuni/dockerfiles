@@ -64,6 +64,7 @@ RUN mkdir ~/ros_catkin_ws \
 
 # Resolving Dependencies
 RUN cd ~/ros_catkin_ws \
+    && apt-get update \
     && rosdep install --from-paths src --ignore-src --rosdistro kinetic -y \
     && rm -rf /var/lib/apt/lists/*
 
