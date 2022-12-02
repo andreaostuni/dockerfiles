@@ -69,7 +69,8 @@ RUN cd ~/ros_catkin_ws \
     && rm -rf /var/lib/apt/lists/*
 
 # Building the catkin Workspace
-RUN ~/ros_catkin_ws/src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/noetic
+RUN cd ~/ros_catkin_ws \
+    && ./src/catkin/bin/catkin_make_isolated --install -DCMAKE_BUILD_TYPE=Release --install-space /opt/ros/noetic
 
 # Setup environment
 ENV LD_LIBRARY_PATH=/opt/ros/noetic/lib
