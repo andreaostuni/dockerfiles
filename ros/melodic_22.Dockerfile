@@ -33,15 +33,23 @@ RUN apt-get update && apt-get install -y \
     gnupg2 \
     lsb-release \
     apt-utils \
-    sudo \
-  && curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - \
+    sudo deb http://deb.debian.org/debian-security/ bullseye-security main contrib non-free
+    deb-src http://deb.debian.org/debian-security/ bullseye-security main contrib non-free&& curl -s https://raw.githubusercontent.com/ros/rosdistro/master/ros.asc | apt-key add - \
   && apt install -y software-properties-common \
   && add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ $(lsb_release -sc) main universe multiverse restricted" \
   && add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ $(lsb_release -sc)-updates main universe multiverse restricted" \ 
   && add-apt-repository "deb http://us.archive.ubuntu.com/ubuntu/ $(lsb_release -sc)-backports main universe multiverse restricted" \
   && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
+# apt installs
+RUN apt install -y git
+RUN apt install -y ros-*
+RUN apt install -y catkin-lint cython3 libapriltag-dev libceres-dev libfrei0r-ocaml-dev
+RUN apt install -y libgeographic-dev libgmock-dev libgoogle-glog-dev libgst-dev
+RUN apt install -y libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev
+RUN apt install -y libimage-view-dev liborocos-bfl-dev libpcl-ros-dev libqt5svg5-dev libqt5websockets5-dev
+RUN apt install -y libqt5x11extras5-dev libqwt-qt5-dev libsdl-image1.2-dev
+RUN apt install -y libspnav-dev liburdfdom-dev libuvc-dev libv4l-dev libyaml-cpp-devRUN apt-get update -y && apt-get upgrade -y && apt-get install -y \
     python-rosdep \
     python-rosinstall \
     python-rosinstall-generator \
