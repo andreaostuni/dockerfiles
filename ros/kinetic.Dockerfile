@@ -26,6 +26,7 @@ RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
   && rm -rf /var/lib/apt/lists/*
 
 # Install ROS Dependencies
+
 RUN apt-get update && apt-get install -y \
     curl \
     dirmngr \
