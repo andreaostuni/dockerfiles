@@ -47,6 +47,8 @@ jobs:
           - melodic
           - humble
           - humble-cuda
+          - humble-ign
+          - humble-cuda-ign
           - galactic
           - galactic-cuda
           - foxy
