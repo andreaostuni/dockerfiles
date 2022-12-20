@@ -9,7 +9,7 @@ from generate import templates
 from generate import generate_workflow as gen
 
 TODAY = date.today()
-USER = "althack"
+USER = "andreaostuni"
 
 log = logging.getLogger(__name__)
 
