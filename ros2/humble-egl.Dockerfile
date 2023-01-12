@@ -11,13 +11,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 ENV LANG en_US.UTF-8
 
-# Install timezone
-RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
-  && export DEBIAN_FRONTEND=noninteractive \
-  && apt-get update \
-  && apt-get install -y tzdata \
-  && dpkg-reconfigure --frontend noninteractive tzdata \
-  && rm -rf /var/lib/apt/lists/*
+
 
 # Install ROS2
 RUN apt-get update && apt-get install -y \

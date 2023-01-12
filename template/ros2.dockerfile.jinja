@@ -12,7 +12,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 {% if base_image == "andreaostuni/nvidia-egl-desktop" -%}ENV LANG en_US.UTF-8
   {%- else %}{% include 'snippits/language.jinja' %}{% endif %}
 
-{% include 'snippits/timezone.jinja' %}
+{% if base_image == "andreaostuni/nvidia-egl-desktop" -%}
+  {%- else %}{% include 'snippits/timezone.jinja' %}{% endif %}
 
 # Install ROS2
 RUN apt-get update && apt-get install -y \
