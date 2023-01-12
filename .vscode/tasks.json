@@ -91,6 +91,7 @@
         "melodic",
         "humble",
         "humble-cuda",
+        "humble-egl",
         "humble-ign",
         "humble-cuda-ign",
         "galactic",
