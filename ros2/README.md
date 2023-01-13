@@ -24,7 +24,7 @@ The main docker image tags are:
 * [humble-egl-base](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl.Dockerfile)
 * [humble-egl-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl.Dockerfile)
 * [humble-egl-full](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl.Dockerfile)
-* [humble-egl-gazebo](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl.Dockerfile)
+* [humble-egl-gazebo-nvidia](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl.Dockerfile)
 * [humble-ign-base](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-ign.Dockerfile)
 * [humble-ign-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-ign.Dockerfile)
 * [humble-ign-full](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-ign.Dockerfile)
