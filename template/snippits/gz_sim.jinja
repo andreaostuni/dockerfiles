@@ -18,10 +18,13 @@ RUN apt-get update && apt-get install -q -y \
   && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=
 
-###########################################
+{% if base_image == "ubuntu" %}
+{%- else %}###########################################
 #  Full+Gazebo+Nvidia image 
 ###########################################
 
-FROM gz_sim AS gz_sim-nvidia
+FROM gz_sim AS gz_sim-nvidia{% endif %}
 
-{% include 'snippits/nvidia.jinja' %}
+{% if base_image == "nvidia/cuda" -%}{% include 'snippits/nvidia.jinja' %}
+{%- elif base_image == "ubuntu" %}
+{%- else %}{% include 'snippits/nvidia-egl.jinja' %}{% endif %}
