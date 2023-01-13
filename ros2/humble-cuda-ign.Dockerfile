@@ -79,7 +79,7 @@ RUN apt-get update && apt-get install -y \
   # Update pydocstyle
   && pip install --upgrade pydocstyle
 
-ARG USERNAME=ros
+ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 

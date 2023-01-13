@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y \
     libgazebo11-dev \
   && rm -rf /var/lib/apt/lists/*
 
-ARG USERNAME=ros
+ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 

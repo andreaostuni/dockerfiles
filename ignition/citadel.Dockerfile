@@ -53,7 +53,7 @@ RUN apt-get update && apt-get install -y \
   vim \
   && rm -rf /var/lib/apt/lists/*
 
-ARG USERNAME=ros
+ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 

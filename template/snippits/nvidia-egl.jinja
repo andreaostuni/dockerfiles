@@ -302,8 +302,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 # Add custom packages below this comment, or use FROM in a new container and replace entrypoint.sh or supervisord.conf, and set ENTRYPOINT to /usr/bin/supervisord
 
-# Add to ros user password ${PASSWD} and to assign adequate groups
-ARG USERNAME=ros
+# Add to user a password ${PASSWD} and to assign adequate groups
+ARG USERNAME=user
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 RUN usermod -a -G adm,audio,cdrom,dialout,dip,fax,floppy,input,lp,lpadmin,plugdev,scanner,sudo,tape,tty,video,voice $USERNAME && \
