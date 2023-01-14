@@ -130,6 +130,9 @@ RUN apt-get update && apt-get install -q -y \
   && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=
 
+ARG USERNAME=user
+RUN echo "if [ -f /usr/share/gazebo-11/setup.bash ]; then source /usr/share/gazebo-11/setup.bash; fi" >> /home/$USERNAME/.bashrc
+
 ###########################################
 #  Full+Gazebo+Nvidia image 
 ###########################################
@@ -307,8 +310,8 @@ RUN dpkg --add-architecture i386 && \
         xfce4-weather-plugin \
         xfce4-whiskermenu-plugin \
         xfce4-xkb-plugin && \
-    # Install LibreOffice with the recommended packages
-    apt-get install -y libreoffice && \
+    # Install Terminator with the recommended packages
+    apt-get install -y terminator && \
     # Prevent dialogs at desktop environment start
     cp -rf /etc/xdg/xfce4/panel/default.xml /etc/xdg/xfce4/xfconf/xfce-perchannel-xml/xfce4-panel.xml && \
     # Support decoding from libva or VA-API through NVIDIA VDPAU

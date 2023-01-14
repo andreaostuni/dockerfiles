@@ -38,6 +38,7 @@ RUN apt-get update && apt-get install -y \
   && rm -rf /var/lib/apt/lists/*
 
 {% include 'snippits/ros_user.jinja' %}
+RUN echo "if [ -f /usr/share/gazebo-11/setup.bash ]; then source /usr/share/gazebo-11/setup.bash; fi" >> /home/$USERNAME/.bashrc
 ENV DEBIAN_FRONTEND=
 
 ###########################################

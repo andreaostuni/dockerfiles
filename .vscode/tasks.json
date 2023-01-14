@@ -98,6 +98,7 @@
         "galactic-cuda",
         "foxy",
         "foxy-cuda",
+        "foxy-egl",
         "gazebo11",
         "gazebo9",
         "fortress",

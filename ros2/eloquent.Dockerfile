@@ -130,5 +130,8 @@ RUN apt-get update && apt-get install -q -y \
   && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=
 
+ARG USERNAME=user
+RUN echo "if [ -f /usr/share/gazebo-11/setup.bash ]; then source /usr/share/gazebo-11/setup.bash; fi" >> /home/$USERNAME/.bashrc
+
 
 
