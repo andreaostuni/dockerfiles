@@ -92,6 +92,7 @@
         "humble",
         "humble-cuda",
         "humble-egl",
+        "humble-egl-ign",
         "humble-ign",
         "humble-cuda-ign",
         "galactic",
