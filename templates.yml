@@ -166,7 +166,7 @@ ros2:
     image_version: "11.7.0-runtime-ubuntu20.04"
   -
     name: foxy-egl
-    ros_distro: humble
+    ros_distro: foxy
     targets:
       - base
       - dev

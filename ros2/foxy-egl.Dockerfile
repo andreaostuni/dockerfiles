@@ -34,16 +34,16 @@ RUN apt-get update && apt-get install -y \
   && curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg \
   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/ros2.list > /dev/null \
   && apt-get update && apt-get install -y \
-    ros-humble-ros-base \
+    ros-foxy-ros-base \
     python3-argcomplete \
   && rm -rf /var/lib/apt/lists/*
 
-ENV ROS_DISTRO=humble
-ENV AMENT_PREFIX_PATH=/opt/ros/humble
-ENV COLCON_PREFIX_PATH=/opt/ros/humble
-ENV LD_LIBRARY_PATH=/opt/ros/humble/lib
-ENV PATH=/opt/ros/humble/bin:$PATH
-ENV PYTHONPATH=/opt/ros/humble/lib/python3.10/site-packages
+ENV ROS_DISTRO=foxy
+ENV AMENT_PREFIX_PATH=/opt/ros/foxy
+ENV COLCON_PREFIX_PATH=/opt/ros/foxy
+ENV LD_LIBRARY_PATH=/opt/ros/foxy/lib
+ENV PATH=/opt/ros/foxy/bin:$PATH
+ENV PYTHONPATH=/opt/ros/foxy/lib/python3.10/site-packages
 ENV ROS_PYTHON_VERSION=3
 ENV ROS_VERSION=2
 ENV DEBIAN_FRONTEND=
@@ -60,7 +60,7 @@ RUN apt-get update && apt-get install -y \
   cmake \
   gdb \
   git \
-  pylint \
+  pylint3 \
   python3-argcomplete \
   python3-colcon-common-extensions \
   python3-pip \
@@ -69,10 +69,10 @@ RUN apt-get update && apt-get install -y \
   vim \
   wget \
   # Install ros distro testing packages
-  ros-humble-ament-lint \
-  ros-humble-launch-testing \
-  ros-humble-launch-testing-ament-cmake \
-  ros-humble-launch-testing-ros \
+  ros-foxy-ament-lint \
+  ros-foxy-launch-testing \
+  ros-foxy-launch-testing-ament-cmake \
+  ros-foxy-launch-testing-ros \
   python3-autopep8 \
   && rm -rf /var/lib/apt/lists/* \
   && rosdep init || echo "rosdep already initialized" \
@@ -107,7 +107,7 @@ FROM dev AS full
 ENV DEBIAN_FRONTEND=noninteractive
 # Install the full release
 RUN apt-get update && apt-get install -y \
-  ros-humble-desktop \
+  ros-foxy-desktop \
   && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=
 
@@ -126,7 +126,7 @@ RUN apt-get update && apt-get install -q -y \
   && wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg \
   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null \
   && apt-get update && apt-get install -q -y \
-    ros-humble-gazebo* \
+    ros-foxy-gazebo* \
   && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=
 
