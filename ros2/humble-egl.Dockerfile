@@ -294,7 +294,11 @@ RUN dpkg --add-architecture i386 && \
         xinit \
         xfonts-base \
         libxrandr-dev \
-        
+        # Install Xvfb, packages above this line should be the same between docker-nvidia-glx-desktop and docker-nvidia-egl-desktop
+        xvfb && \
+    # Install Vulkan utilities
+    if [ "${UBUNTU_RELEASE}" \< "20.04" ]; then apt-get install --no-install-recommends -y vulkan-utils; else apt-get install --no-install-recommends -y vulkan-tools; fi && \
+         
     # Install Terminator with the recommended packages
     apt-get install -y terminator && \
     
@@ -307,12 +311,10 @@ RUN dpkg --add-architecture i386 && \
     \"ICD\": {\n\
         \"library_path\": \"libEGL_nvidia.so.0\"\n\
     }\n\
-    }" > /usr/share/glvnd/egl_vendor.d/10_nvidia.json
+}" > /usr/share/glvnd/egl_vendor.d/10_nvidia.json
 
-    # Configure Vulkan manually
-    RUN VULKAN_API_VERSION=$(dpkg -s libvulkan1 | grep -oP 'Version: [0-9|\.]+' | grep -oP '[0-9]+(\.[0-9]+)(\.[0-9]+)') && \
-    
-
+# Configure Vulkan manually
+RUN VULKAN_API_VERSION=$(dpkg -s libvulkan1 | grep -oP 'Version: [0-9|\.]+' | grep -oP '[0-9]+(\.[0-9]+)(\.[0-9]+)') && \
     mkdir -p /etc/vulkan/icd.d/ && \
     echo "{\n\
     \"file_format_version\" : \"1.0.0\",\n\
