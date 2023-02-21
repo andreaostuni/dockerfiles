@@ -28,8 +28,10 @@ RUN ln -fs /usr/share/zoneinfo/UTC /etc/localtime \
 
 # install packages
 RUN apt-get update && apt-get install -q -y \
+  curl \
   gnupg \
   lsb-release \
+  python3-argcomplete \
   sudo \
   wget \
   && wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg \
@@ -62,7 +64,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
   && useradd -s /bin/bash --uid $USER_UID --gid $USER_GID -m $USERNAME \
   # [Optional] Add sudo support for the non-root user
   && apt-get update \
-  && apt-get install -y sudo \
+  && apt-get install -y sudo git-core bash-completion \
   && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME\
   && chmod 0440 /etc/sudoers.d/$USERNAME \
   # Cleanup
