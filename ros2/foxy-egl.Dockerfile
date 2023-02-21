@@ -525,13 +525,13 @@ RUN usermod -a -G adm,audio,cdrom,dialout,dip,fax,floppy,input,lp,lpadmin,plugde
     ln -snf "/usr/share/zoneinfo/$TZ" /etc/localtime && echo "$TZ" > /etc/timezone
 
 # Copy scripts and configurations used to start the container
-RUN curl -fsSL -o /etc/entrypoint.sh "https://raw.githubusercontent.com/ehfd/docker-nvidia-egl-desktop/main/entrypoint.sh"
+RUN curl -fsSL -o /etc/entrypoint.sh "https://raw.githubusercontent.com/andreaostuni/docker-nvidia-egl-desktop/main/entrypoint.sh"
 # COPY entrypoint.sh /etc/entrypoint.sh
 RUN chmod 755 /etc/entrypoint.sh
-RUN curl -fsSL -o /etc/selkies-gstreamer-entrypoint.sh "https://raw.githubusercontent.com/ehfd/docker-nvidia-egl-desktop/main/selkies-gstreamer-entrypoint.sh"
+RUN curl -fsSL -o /etc/selkies-gstreamer-entrypoint.sh "https://raw.githubusercontent.com/andreaostuni/docker-nvidia-egl-desktop/main/selkies-gstreamer-entrypoint.sh"
 # COPY selkies-gstreamer-entrypoint.sh /etc/selkies-gstreamer-entrypoint.sh
 RUN chmod 755 /etc/selkies-gstreamer-entrypoint.sh
-RUN curl -fsSL -o /etc/supervisord.conf "https://raw.githubusercontent.com/ehfd/docker-nvidia-egl-desktop/main/supervisord.conf"
+RUN curl -fsSL -o /etc/supervisord.conf "https://raw.githubusercontent.com/andreaostuni/docker-nvidia-egl-desktop/main/supervisord.conf"
 # COPY supervisord.conf /etc/supervisord.conf
 RUN chmod 755 /etc/supervisord.conf
 
