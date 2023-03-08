@@ -89,6 +89,8 @@
       "options": [
         "noetic",
         "melodic",
+        "rolling",
+        "rolling-egl",
         "humble",
         "humble-cuda",
         "humble-egl",

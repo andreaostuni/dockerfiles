@@ -46,6 +46,30 @@ ros:
     ubuntu_distro: "16.04"
     eol: true
 ros2:
+  -
+    name: rolling
+    ros_distro: rolling
+    targets:
+      - base
+      - dev
+      - full
+      - gazebo-nvidia
+    gz_sim: false
+    python_version: "3.10"
+    base_image: "andreaostuni/nvidia_cudagl"
+    image_version: "11.7.0-runtime-ubuntu22.04"
+  -
+    name: rolling-egl
+    ros_distro: rolling
+    targets:
+      - base
+      - dev
+      - full
+      - gazebo-nvidia
+    gz_sim: false
+    python_version: "3.10"
+    base_image: "ubuntu"
+    image_version: "22.04"
   - 
     name: humble
     ros_distro: humble

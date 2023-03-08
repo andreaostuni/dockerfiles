@@ -6,13 +6,21 @@ See [the docs](https://athackst.github.io/dockerfiles) or read about  [how I dev
 ## Usage
 
 ```bash
-docker pull althack/ros2:humble-base
+docker pull althack/ros2:rolling-base
 ```
 
 ## Organization
 
 The main docker image tags are:
 
+* [rolling-base](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling.Dockerfile)
+* [rolling-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling.Dockerfile)
+* [rolling-full](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling.Dockerfile)
+* [rolling-gazebo-nvidia](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling.Dockerfile)
+* [rolling-egl-base](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling-egl.Dockerfile)
+* [rolling-egl-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling-egl.Dockerfile)
+* [rolling-egl-full](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling-egl.Dockerfile)
+* [rolling-egl-gazebo-nvidia](https://github.com/athackst/dockerfiles/blob/main/ros2/rolling-egl.Dockerfile)
 * [humble-base](https://github.com/athackst/dockerfiles/blob/main/ros2/humble.Dockerfile)
 * [humble-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/humble.Dockerfile)
 * [humble-full](https://github.com/athackst/dockerfiles/blob/main/ros2/humble.Dockerfile)
