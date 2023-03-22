@@ -57,7 +57,7 @@ ros2:
     gz_sim: false
     python_version: "3.10"
     base_image: "andreaostuni/nvidia_cudagl"
-    image_version: "11.7.0-runtime-ubuntu22.04"
+    image_version: "11.7.0-devel-ubuntu22.04"
   -
     name: rolling-egl
     ros_distro: rolling
@@ -69,7 +69,7 @@ ros2:
     gz_sim: false
     python_version: "3.10"
     base_image: "andreaostuni/nvidia_cudagl"
-    image_version: "11.7.0-runtime-ubuntu22.04"
+    image_version: "11.7.0-devel-ubuntu22.04"
   - 
     name: humble
     ros_distro: humble
@@ -94,7 +94,7 @@ ros2:
     gz_sim: false
     python_version: "3.10"
     base_image: "nvidia/cuda"
-    image_version: "11.7.0-runtime-ubuntu22.04"
+    image_version: "11.7.0-devel-ubuntu22.04"
   -
     name: humble-egl
     ros_distro: humble
@@ -106,7 +106,7 @@ ros2:
     gz_sim: false
     python_version: "3.10"
     base_image: "andreaostuni/nvidia_cudagl"
-    image_version: "11.7.0-runtime-ubuntu22.04"
+    image_version: "11.7.0-devel-ubuntu22.04"
   -
     name: humble-egl-garden
     ros_distro: humble
@@ -119,7 +119,7 @@ ros2:
     ign_distro: "garden"
     python_version: "3.10"
     base_image: "andreaostuni/nvidia_cudagl"
-    image_version: "11.7.0-runtime-ubuntu22.04"
+    image_version: "11.7.0-devel-ubuntu22.04"
   -
     name: humble-egl-fortress
     ros_distro: humble
@@ -132,7 +132,7 @@ ros2:
     ign_distro: "fortress"
     python_version: "3.10"
     base_image: "andreaostuni/nvidia_cudagl"
-    image_version: "11.7.0-runtime-ubuntu22.04"
+    image_version: "11.7.0-devel-ubuntu22.04"
   - 
     name: humble-ign
     ros_distro: humble
@@ -158,7 +158,7 @@ ros2:
     ign_distro: "garden"
     python_version: "3.10"
     base_image: "nvidia/cuda"
-    image_version: "11.7.0-runtime-ubuntu22.04"
+    image_version: "11.7.0-devel-ubuntu22.04"
   - 
     name: galactic
     ros_distro: galactic
@@ -180,7 +180,7 @@ ros2:
       - gazebo-nvidia
     python_version: "3.8"
     base_image: "nvidia/cuda"
-    image_version: "11.7.0-runtime-ubuntu20.04"
+    image_version: "11.7.0-devel-ubuntu20.04"
   - 
     name: foxy
     ros_distro: foxy
@@ -202,7 +202,7 @@ ros2:
       - gazebo-nvidia
     python_version: "3.8"
     base_image: "nvidia/cuda"
-    image_version: "11.7.0-runtime-ubuntu20.04"
+    image_version: "11.7.0-devel-ubuntu20.04"
   -
     name: foxy-egl
     ros_distro: foxy
@@ -214,7 +214,7 @@ ros2:
     gz_sim: false
     python_version: "3.10"
     base_image: "nvidia/cudagl"
-    image_version: "11.4.2-runtime-ubuntu20.04"
+    image_version: "11.4.2-devel-ubuntu20.04"
   - 
     name: eloquent
     ros_distro: eloquent

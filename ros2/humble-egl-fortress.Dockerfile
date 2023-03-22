@@ -5,7 +5,7 @@
 ###########################################
 # Base image 
 ###########################################
-FROM andreaostuni/nvidia_cudagl:11.7.0-runtime-ubuntu22.04 AS base
+FROM andreaostuni/nvidia_cudagl:11.7.0-devel-ubuntu22.04 AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 

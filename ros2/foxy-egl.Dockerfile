@@ -5,7 +5,7 @@
 ###########################################
 # Base image 
 ###########################################
-FROM nvidia/cudagl:11.4.2-runtime-ubuntu20.04 AS base
+FROM nvidia/cudagl:11.4.2-devel-ubuntu20.04 AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
