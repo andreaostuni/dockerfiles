@@ -36,7 +36,7 @@ The main docker image tags are:
 * [humble-egl-cuda12-base](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda12.Dockerfile)
 * [humble-egl-cuda12-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda12.Dockerfile)
 * [humble-egl-cuda12-full](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda12.Dockerfile)
-* [humble-egl-cuda12-gz_sim](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda12.Dockerfile)
+* [humble-egl-cuda12-gazebo-nvidia](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda12.Dockerfile)
 * [humble-egl-garden-base](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-garden.Dockerfile)
 * [humble-egl-garden-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-garden.Dockerfile)
 * [humble-egl-garden-full](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-garden.Dockerfile)

@@ -293,13 +293,10 @@ RUN dpkg --add-architecture i386 && \
         # Install Xvfb, packages above this line should be the same between docker-nvidia-glx-desktop and docker-nvidia-egl-desktop
         xvfb && \
     # Install Vulkan utilities
-    if [ "${UBUNTU_RELEASE}" \< "20.04" ]; then apt-get install --no-install-recommends -y vulkan-utils; else apt-get install --no-install-recommends -y vulkan-tools; fi && \
-         
+    if [ "${UBUNTU_RELEASE}" \< "20.04" ]; then apt-get install --no-install-recommends -y vulkan-utils; else apt-get install --no-install-recommends -y vulkan-tools; fi && \      
     # Install Terminator with the recommended packages
     apt-get install -y terminator && \
-    
     rm -rf /var/lib/apt/lists/* && \
-
     # Configure EGL manually
     mkdir -p /usr/share/glvnd/egl_vendor.d/ && \
     echo "{\n\
