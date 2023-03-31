@@ -37,7 +37,6 @@ The main docker image tags are:
 * [humble-egl-cuda11.8-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda11.8.Dockerfile)
 * [humble-egl-cuda11.8-full](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda11.8.Dockerfile)
 * [humble-egl-cuda11.8-gazebo-nvidia](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda11.8.Dockerfile)
-* [humble-egl-cuda11.8-gazebo-nvidia-tf](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda11.8.Dockerfile)
 * [humble-egl-cuda11.8-tf-base](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda11.8-tf.Dockerfile)
 * [humble-egl-cuda11.8-tf-dev](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda11.8-tf.Dockerfile)
 * [humble-egl-cuda11.8-tf-full](https://github.com/athackst/dockerfiles/blob/main/ros2/humble-egl-cuda11.8-tf.Dockerfile)

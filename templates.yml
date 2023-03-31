@@ -117,7 +117,6 @@ ros2:
       - dev
       - full
       - gazebo-nvidia
-      - gazebo-nvidia-tf
     gz_sim: false
     use_egl: true
     use_tf: false
