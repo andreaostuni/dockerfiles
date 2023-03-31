@@ -108,6 +108,19 @@ ros2:
     base_image: "andreaostuni/nvidia_cudagl"
     image_version: "11.7.0-devel-ubuntu22.04"
   -
+    name: humble-egl-cuda12
+    ros_distro: humble
+    targets:
+      - base
+      - dev
+      - full
+      - gz_sim
+    gz_sim: true
+    ign_distro: "garden"
+    python_version: "3.10"
+    base_image: "nvidia/cuda"
+    image_version: "12.0.1-devel-ubuntu22.04"
+  -
     name: humble-egl-garden
     ros_distro: humble
     targets:
@@ -118,7 +131,7 @@ ros2:
     gz_sim: true
     ign_distro: "garden"
     python_version: "3.10"
-    base_image: "andreaostuni/nvidia_cudagl"
+    base_image: "nvidia/cuda"
     image_version: "11.7.0-devel-ubuntu22.04"
   -
     name: humble-egl-fortress
