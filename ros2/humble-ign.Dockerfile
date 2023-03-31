@@ -130,5 +130,3 @@ RUN apt-get update && apt-get install -q -y \
   && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=
 
-
-

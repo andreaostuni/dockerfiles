@@ -25,8 +25,7 @@ RUN echo "if [ -f /usr/share/gazebo-11/setup.bash ]; then source /usr/share/gaze
 #  Full+Gazebo+Nvidia image 
 ###########################################
 
-FROM gazebo AS gazebo-nvidia{% endif %}
-
-{% if base_image == "nvidia/cuda" -%}{% include 'snippits/nvidia.jinja' %}
-{%- elif base_image == "ubuntu" %}
-{%- else %}{% include 'snippits/nvidia-egl.jinja' %}{% endif %}
+FROM gazebo AS gazebo-nvidia
+{% if use_egl -%}{% include 'snippits/nvidia-egl.jinja' %}
+{%- else %}{% include 'snippits/nvidia.jinja' %}{% endif %}
+{% endif %}

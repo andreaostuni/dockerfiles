@@ -138,7 +138,6 @@ FROM gz_sim AS gz_sim-nvidia
 
 
 
-
 ARG UBUNTU_RELEASE=22.04
 ARG CUDA_VERSION=11.7.0
 # Make all NVIDIA GPUs visible by default

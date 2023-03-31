@@ -138,7 +138,6 @@ RUN echo "if [ -f /usr/share/gazebo-11/setup.bash ]; then source /usr/share/gaze
 ###########################################
 
 FROM gazebo AS gazebo-nvidia
-
 ################
 # Expose the nvidia driver to allow opengl 
 # Dependencies for glvnd and X11.

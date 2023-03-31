@@ -23,8 +23,7 @@ ENV DEBIAN_FRONTEND=
 #  Full+Gazebo+Nvidia image 
 ###########################################
 
-FROM gz_sim AS gz_sim-nvidia{% endif %}
-
-{% if base_image == "nvidia/cuda" -%}{% include 'snippits/nvidia.jinja' %}
-{%- elif base_image == "ubuntu" %}
-{%- else %}{% include 'snippits/nvidia-egl.jinja' %}{% endif %}
+FROM gz_sim AS gz_sim-nvidia
+{% if use_egl -%}{% include 'snippits/nvidia-egl.jinja' %}
+{%- else %}{% include 'snippits/nvidia.jinja' %}{% endif %}
+{% endif %}

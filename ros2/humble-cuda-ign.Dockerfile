@@ -135,7 +135,6 @@ ENV DEBIAN_FRONTEND=
 ###########################################
 
 FROM gz_sim AS gz_sim-nvidia
-
 ################
 # Expose the nvidia driver to allow opengl 
 # Dependencies for glvnd and X11.
