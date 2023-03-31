@@ -1,0 +1,5 @@
+RUN python3 -m pip install nvidia-cudnn-cu11==8.6.0.163 tensorflow==2.12.*
+
+ENV CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn.file)"))
+
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/:$CUDNN_PATH/lib

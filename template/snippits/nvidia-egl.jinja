@@ -392,6 +392,22 @@ RUN curl -fsSL -o /etc/supervisord.conf "https://raw.githubusercontent.com/andre
 # COPY supervisord.conf /etc/supervisord.conf
 RUN chmod 755 /etc/supervisord.conf
 
+{%- if use_tf %}
+# Install the latest version of Tensorflow
+###########################################
+#  Full+Gazebo+Nvidia+Tensorflow image 
+###########################################
+
+{%- if gz_sim %}
+FROM gz_sim-nvidia as gz_sim-nvidia-tf
+{%- else %}
+FROM gazebo-nvidia as gazebo-nvidia-tf
+{%- endif %}
+
+{% include 'snippits/tensorflow.jinja' %}
+{%- endif %}
+
+
 EXPOSE 8080
 
 USER $USERNAME

@@ -5,7 +5,7 @@
 ###########################################
 # Base image 
 ###########################################
-FROM andreaostuni/nvidia_cudagl:11.7.0-devel-ubuntu22.04 AS base
+FROM nvidia/cuda:11.8.0-devel-ubuntu22.04 AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -112,12 +112,12 @@ RUN apt-get update && apt-get install -y \
 ENV DEBIAN_FRONTEND=
 
 ###########################################
-#  Full+GzSim image 
+#  Full+Gazebo image 
 ###########################################
-FROM full AS gz_sim
+FROM full AS gazebo
 
 ENV DEBIAN_FRONTEND=noninteractive
-# Install gz_sim(ignition)
+# Install gazebo
 RUN apt-get update && apt-get install -q -y \
   lsb-release \
   wget \
@@ -126,20 +126,23 @@ RUN apt-get update && apt-get install -q -y \
   && wget https://packages.osrfoundation.org/gazebo.gpg -O /usr/share/keyrings/pkgs-osrf-archive-keyring.gpg \
   && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/pkgs-osrf-archive-keyring.gpg] http://packages.osrfoundation.org/gazebo/ubuntu-stable $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/gazebo-stable.list > /dev/null \
   && apt-get update && apt-get install -q -y \
-    ignition-fortress \
+    ros-humble-gazebo* \
   && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=
+
+ARG USERNAME=user
+RUN echo "if [ -f /usr/share/gazebo-11/setup.bash ]; then source /usr/share/gazebo-11/setup.bash; fi" >> /home/$USERNAME/.bashrc
 
 ###########################################
 #  Full+Gazebo+Nvidia image 
 ###########################################
 
-FROM gz_sim AS gz_sim-nvidia
+FROM gazebo AS gazebo-nvidia
 
 
 
 ARG UBUNTU_RELEASE=22.04
-ARG CUDA_VERSION=11.7.0
+ARG CUDA_VERSION=11.8.0
 # Make all NVIDIA GPUs visible by default
 ARG NVIDIA_VISIBLE_DEVICES=all
 # Use noninteractive mode to skip confirmation when installing packages
@@ -528,6 +531,17 @@ RUN chmod 755 /etc/selkies-gstreamer-entrypoint.sh
 RUN curl -fsSL -o /etc/supervisord.conf "https://raw.githubusercontent.com/andreaostuni/docker-nvidia-egl-desktop/main/supervisord.conf"
 # COPY supervisord.conf /etc/supervisord.conf
 RUN chmod 755 /etc/supervisord.conf
+# Install the latest version of Tensorflow
+###########################################
+#  Full+Gazebo+Nvidia+Tensorflow image 
+###########################################
+FROM gazebo-nvidia as gazebo-nvidia-tf
+
+RUN python3 -m pip install nvidia-cudnn-cu11==8.6.0.163 tensorflow==2.12.*
+
+ENV CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn.file)"))
+
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/:$CUDNN_PATH/lib
 
 
 EXPOSE 8080

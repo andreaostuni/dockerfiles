@@ -529,6 +529,7 @@ RUN curl -fsSL -o /etc/supervisord.conf "https://raw.githubusercontent.com/andre
 # COPY supervisord.conf /etc/supervisord.conf
 RUN chmod 755 /etc/supervisord.conf
 
+
 EXPOSE 8080
 
 USER $USERNAME

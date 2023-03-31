@@ -15,3 +15,18 @@ RUN apt-get update \
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute
 ENV QT_X11_NO_MITSHM 1
+
+{%- if use_tf %}
+# Install the latest version of Tensorflow
+###########################################
+#  Full+Gazebo+Nvidia+Tensorflow image 
+###########################################
+
+{%- if gz_sim %}
+FROM gz_sim-nvidia as gz_sim-nvidia-tf
+{%- else %}
+FROM gazebo-nvidia as gazebo-nvidia-tf
+{%- endif %}
+
+{% include 'snippits/tensorflow.jinja' %}
+{%- endif %}
