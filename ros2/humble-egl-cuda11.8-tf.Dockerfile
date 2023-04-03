@@ -537,9 +537,9 @@ RUN chmod 755 /etc/supervisord.conf
 ###########################################
 FROM gazebo-nvidia as gazebo-nvidia-tf
 
-RUN python3 -m pip install nvidia-cudnn-cu11==8.6.0.163 tensorflow==2.12.*
+RUN python3 -m pip install jupyter-lab tensorrt==8.5.3.1 nvidia-cudnn-cu11==8.6.0.163 tensorflow==2.12.*
 
-ENV CUDNN_PATH=$(dirname $(python -c "import nvidia.cudnn;print(nvidia.cudnn.file)"))
+ENV CUDNN_PATH=$(dirname $(python3 -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))
 
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$CONDA_PREFIX/lib/:$CUDNN_PATH/lib
 

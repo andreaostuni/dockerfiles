@@ -1,4 +1,4 @@
-RUN python3 -m pip install tensorrt==8.5.3.1 nvidia-cudnn-cu11==8.6.0.163 tensorflow==2.12.*
+RUN python3 -m pip install jupyter-lab tensorrt==8.5.3.1 nvidia-cudnn-cu11==8.6.0.163 tensorflow==2.12.*
 
 ENV CUDNN_PATH=$(dirname $(python3 -c "import nvidia.cudnn;print(nvidia.cudnn.__file__)"))
 
