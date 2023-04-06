@@ -41,6 +41,9 @@ ENV DEBIAN_FRONTEND=
 ###########################################
 FROM base AS dev
 
+{% if ros_bridge -%}
+{% include 'snippits/rosbridge.jinja' %}
+{%- endif %}
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
   bash-completion \

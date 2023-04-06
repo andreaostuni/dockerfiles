@@ -61,6 +61,7 @@ jobs:
           - foxy
           - foxy-cuda
           - foxy-egl
+          - foxy-egl-bridge
           - gazebo11
           - gazebo9
           - fortress

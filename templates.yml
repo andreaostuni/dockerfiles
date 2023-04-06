@@ -245,6 +245,21 @@ ros2:
       - full
       - gazebo-nvidia
     gz_sim: false
+    use_egl: true
+    python_version: "3.10"
+    base_image: "nvidia/cudagl"
+    image_version: "11.4.2-devel-ubuntu20.04"
+  -
+    name: foxy-egl-bridge
+    ros_distro: foxy
+    targets:
+      - base
+      - dev
+      - full
+      - gazebo-nvidia
+    gz_sim: false
+    use_egl: true
+    ros_bridge: true
     python_version: "3.10"
     base_image: "nvidia/cudagl"
     image_version: "11.4.2-devel-ubuntu20.04"
