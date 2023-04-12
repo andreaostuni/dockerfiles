@@ -115,7 +115,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
   && rm -rf /var/lib/apt/lists/* \
   && echo "source /usr/share/bash-completion/completions/git" >> /home/$USERNAME/.bashrc \
   && echo "source /opt/ros/${ROS1_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \
-  && echo "source /opt/ros/${ROS2_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \
+  && echo "unset ROS_DISTRO" >> /home/$USERNAME/.bashrc \
+  && echo "source /opt/ros/${ROS2_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc
 
 ENV DEBIAN_FRONTEND=
 ENV AMENT_CPPCHECK_ALLOW_SLOW_VERSIONS=1
