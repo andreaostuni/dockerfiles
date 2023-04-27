@@ -359,3 +359,10 @@ gz:
       - nvidia
     gazebo_version: "7"
     ubuntu_distro: "22.04"
+salt:
+  - 
+    name: salt-cuda-11.8
+    targets:
+      - base
+    base_image: "nvidia/cuda"
+    image_version: "11.8.0-devel-ubuntu22.04"

@@ -22,6 +22,7 @@ jobs:
           - gazebo
           - ignition
           - gz
+          - salt
     steps:
       - name: git checkout
         uses: actions/checkout@v3

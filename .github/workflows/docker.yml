@@ -68,6 +68,7 @@ jobs:
           - dome
           - citadel
           - garden
+          - salt-cuda-11.8
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python

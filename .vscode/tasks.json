@@ -112,6 +112,7 @@
         "dome",
         "citadel",
         "garden",
+        "salt-cuda-11.8",
         "all"
       ],
       "default": "foxy"
