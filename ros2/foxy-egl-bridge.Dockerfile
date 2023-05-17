@@ -116,7 +116,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
   && echo "source /usr/share/bash-completion/completions/git" >> /home/$USERNAME/.bashrc \
   && echo "source /opt/ros/${ROS1_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \
   && echo "unset ROS_DISTRO" >> /home/$USERNAME/.bashrc \
-  && echo "source /opt/ros/${ROS2_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \&& echo "export MAKEFLAGS="-j 4" >> /home/$USERNAME/.bashrc
+  && echo "source /opt/ros/${ROS2_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \&& echo 'export MAKEFLAGS="-j 4"' >> /home/$USERNAME/.bashrc
   
 
 ENV DEBIAN_FRONTEND=

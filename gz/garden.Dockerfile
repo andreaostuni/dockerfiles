@@ -71,7 +71,7 @@ RUN groupadd --gid $USER_GID $USERNAME \
   && rm -rf /var/lib/apt/lists/* \
   && echo "source /usr/share/bash-completion/completions/git" >> /home/$USERNAME/.bashrc \
   && echo "if [ -f /opt/ros/${ROS_DISTRO}/setup.bash ]; then source /opt/ros/${ROS_DISTRO}/setup.bash; fi" >> /home/$USERNAME/.bashrc \
-  && echo "export MAKEFLAGS="-j 4" >> /home/$USERNAME/.bashrc
+  && echo 'export MAKEFLAGS="-j 4"' >> /home/$USERNAME/.bashrc
   
 ENV DEBIAN_FRONTEND=
 

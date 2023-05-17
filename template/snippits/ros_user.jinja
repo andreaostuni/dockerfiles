@@ -20,5 +20,5 @@ RUN groupadd --gid $USER_GID $USERNAME \
   {%- else %}
   && echo "if [ -f /opt/ros/${ROS_DISTRO}/setup.bash ]; then source /opt/ros/${ROS_DISTRO}/setup.bash; fi" >> /home/$USERNAME/.bashrc \
   {% endif -%}
-  && echo "export MAKEFLAGS="-j 4" >> /home/$USERNAME/.bashrc
+  && echo 'export MAKEFLAGS="-j 4"' >> /home/$USERNAME/.bashrc
   
