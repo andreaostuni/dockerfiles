@@ -16,9 +16,9 @@ RUN groupadd --gid $USER_GID $USERNAME \
   {%- if ros_bridge %}
   && echo "source /opt/ros/${ROS1_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \
   && echo "unset ROS_DISTRO" >> /home/$USERNAME/.bashrc \
-  && echo "source /opt/ros/${ROS2_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc 
+  && echo "source /opt/ros/${ROS2_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \
   {%- else %}
-  && echo "if [ -f /opt/ros/${ROS_DISTRO}/setup.bash ]; then source /opt/ros/${ROS_DISTRO}/setup.bash; fi" >> /home/$USERNAME/.bashrc
-  {%- endif -%}
+  && echo "if [ -f /opt/ros/${ROS_DISTRO}/setup.bash ]; then source /opt/ros/${ROS_DISTRO}/setup.bash; fi" >> /home/$USERNAME/.bashrc \
+  {% endif -%}
   && echo "export MAKEFLAGS="-j 4" >> /home/$USERNAME/.bashrc
   

@@ -5,7 +5,7 @@
 ###########################################
 # Base image 
 ###########################################
-FROM nvidia/cudagl:11.4.2-devel-ubuntu20.04 AS base
+FROM nvidia/cuda:11.8.0-devel-ubuntu20.04 AS base
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -53,26 +53,7 @@ ENV DEBIAN_FRONTEND=
 ###########################################
 FROM base AS dev
 
-# setup sources.list
-RUN echo "deb http://packages.ros.org/ros/ubuntu focal main" > /etc/apt/sources.list.d/ros1-latest.list
 
-# setup keys
-RUN apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys C1CF6E31E6BADE8868B172B4F42ED6FBAB17C654
-
-ENV ROS1_DISTRO noetic
-ENV ROS2_DISTRO foxy
-
-# install ros packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-noetic-ros-comm=1.16.0-1* \
-    ros-noetic-roscpp-tutorials=0.10.2-1* \
-    ros-noetic-rospy-tutorials=0.10.2-1* \
-    && rm -rf /var/lib/apt/lists/*
-
-# install ros2 packages
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    ros-foxy-ros1-bridge=0.9.6-1* \
-    && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
   bash-completion \
@@ -114,9 +95,8 @@ RUN groupadd --gid $USER_GID $USERNAME \
   # Cleanup
   && rm -rf /var/lib/apt/lists/* \
   && echo "source /usr/share/bash-completion/completions/git" >> /home/$USERNAME/.bashrc \
-  && echo "source /opt/ros/${ROS1_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \
-  && echo "unset ROS_DISTRO" >> /home/$USERNAME/.bashrc \
-  && echo "source /opt/ros/${ROS2_DISTRO}/setup.bash" >> /home/$USERNAME/.bashrc \&& echo "export MAKEFLAGS="-j 4" >> /home/$USERNAME/.bashrc
+  && echo "if [ -f /opt/ros/${ROS_DISTRO}/setup.bash ]; then source /opt/ros/${ROS_DISTRO}/setup.bash; fi" >> /home/$USERNAME/.bashrc \
+  && echo "export MAKEFLAGS="-j 4" >> /home/$USERNAME/.bashrc
   
 
 ENV DEBIAN_FRONTEND=
@@ -165,7 +145,7 @@ FROM gazebo AS gazebo-nvidia
 
 
 ARG UBUNTU_RELEASE=20.04
-ARG CUDA_VERSION=11.4.2
+ARG CUDA_VERSION=11.8.0
 # Make all NVIDIA GPUs visible by default
 ARG NVIDIA_VISIBLE_DEVICES=all
 # Use noninteractive mode to skip confirmation when installing packages

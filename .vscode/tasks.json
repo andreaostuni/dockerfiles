@@ -106,6 +106,7 @@
         "foxy-cuda",
         "foxy-egl",
         "foxy-egl-bridge",
+        "foxy-egl-cuda11.8",
         "gazebo11",
         "gazebo9",
         "fortress",
