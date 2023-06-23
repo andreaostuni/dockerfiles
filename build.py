@@ -58,7 +58,7 @@ class Docker(object):
         self.api_client = docker.APIClient()
         self.auth_config = auth_config
 
-    def build(self, context, dockerfile, repository, tag, target, labels):
+    def build(self, context, dockerfile, repository, tag, target, labels, platform='linux/amd64'):
         """Build the specified container.
 
         Args:
@@ -68,20 +68,23 @@ class Docker(object):
             tag: The tag for the build
             target: The target to build in a multi-stage docker
             labels: Extra label to add to the image
+            platform: The platform to build for
         """
         build_tag = "{repository}:{tag}".format(
             repository=repository,
             tag=tag)
-        log.info("Building {context}{dockerfile} {target} as {tag}".format(
+        log.info("Building {context}{dockerfile} {target} as {tag} for platform {platform}".format(
             context=context,
             dockerfile=dockerfile,
             target=target,
-            tag=build_tag))
+            tag=build_tag,
+            platform=platform))
         output = self.api_client.build(path=context,
                                        dockerfile=dockerfile,
                                        target=target,
                                        tag=build_tag,
                                        labels=labels,
+                                       platform=platform,
                                        pull=True,
                                        decode=True)
         self._process_output(output)
@@ -188,14 +191,18 @@ def build(image, push, clean):
         dockerfile = "{file}.Dockerfile".format(file=name)
         labels = {"version": "{date}".format(date=TODAY)}
         for target in targets:
+            platform = 'linux/amd64'
             latest_tag = "{name}-{target}".format(name=name, target=target)
             dated_tag = "{latest}-{date}".format(latest=latest_tag, date=TODAY)
+            if target.contains("arm64"):
+                platform = 'linux/arm64/v8'
             dockerpy.build(context=context,
                            dockerfile=dockerfile,
                            repository=repository,
                            tag=latest_tag,
                            target=target,
-                           labels=labels)
+                           labels=labels,
+                           platform=platform)
             dockerpy.tag(repository=repository,
                          prev_tag=latest_tag, new_tag=dated_tag)
 

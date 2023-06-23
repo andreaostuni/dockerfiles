@@ -51,7 +51,7 @@ jobs:
           - humble-cuda
           - humble-egl
           - humble-egl-cuda11.8
-          - humble-egl-cuda11.8-tf
+          - humble-arm64
           - humble-egl-garden
           - humble-egl-fortress
           - humble-ign
