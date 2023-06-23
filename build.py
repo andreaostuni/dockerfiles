@@ -58,7 +58,8 @@ class Docker(object):
         self.api_client = docker.APIClient()
         self.auth_config = auth_config
 
-    def build(self, context, dockerfile, repository, tag, target, labels, platform='linux/amd64'):
+    def build(self, context, dockerfile,
+              repository, tag, target, labels, platform='linux/amd64'):
         """Build the specified container.
 
         Args:
@@ -73,7 +74,8 @@ class Docker(object):
         build_tag = "{repository}:{tag}".format(
             repository=repository,
             tag=tag)
-        log.info("Building {context}{dockerfile} {target} as {tag} for platform {platform}".format(
+        log.info("Building {context}{dockerfile} \
+                  {target} as {tag} for platform {platform}".format(
             context=context,
             dockerfile=dockerfile,
             target=target,
@@ -194,7 +196,7 @@ def build(image, push, clean):
             platform = 'linux/amd64'
             latest_tag = "{name}-{target}".format(name=name, target=target)
             dated_tag = "{latest}-{date}".format(latest=latest_tag, date=TODAY)
-            if target.contains("arm64"):
+            if target.find("arm64") != -1:
                 platform = 'linux/arm64/v8'
             dockerpy.build(context=context,
                            dockerfile=dockerfile,
