@@ -196,6 +196,10 @@ def build(image, push, clean):
             platform = 'linux/amd64'
             latest_tag = "{name}-{target}".format(name=name, target=target)
             dated_tag = "{latest}-{date}".format(latest=latest_tag, date=TODAY)
+            print("Building {repository}:{tag}".format(
+                repository=repository, tag=dated_tag))
+            print("Target platform: {target}".format(
+                target=target.find("arm64")))
             if target.find("arm64") != -1:
                 platform = 'linux/arm64/v8'
             dockerpy.build(context=context,
