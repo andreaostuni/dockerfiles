@@ -71,8 +71,6 @@ class Docker(object):
             labels: Extra label to add to the image
             platform: The platform to build for
         """
-        if target.find("arm64") != -1:
-            platform = 'linux/arm64/v8'
 
         build_tag = "{repository}:{tag}".format(
             repository=repository,
@@ -201,9 +199,7 @@ def build(image, push, clean):
             dated_tag = "{latest}-{date}".format(latest=latest_tag, date=TODAY)
             print("Building {repository}:{tag}".format(
                 repository=repository, tag=dated_tag))
-            print("Target platform: {target}".format(
-                target=target.find("arm64")))
-            if target.find("arm64") != -1:
+            if latest_tag.find("arm64") != -1:
                 platform = 'linux/arm64/v8'
             dockerpy.build(context=context,
                            dockerfile=dockerfile,
