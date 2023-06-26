@@ -71,7 +71,6 @@ class Docker(object):
             labels: Extra label to add to the image
             platform: The platform to build for
         """
-
         build_tag = "{repository}:{tag}".format(
             repository=repository,
             tag=tag)
