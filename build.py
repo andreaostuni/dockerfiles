@@ -71,6 +71,9 @@ class Docker(object):
             labels: Extra label to add to the image
             platform: The platform to build for
         """
+        if target.find("arm64") != -1:
+            platform = 'linux/arm64/v8'
+
         build_tag = "{repository}:{tag}".format(
             repository=repository,
             tag=tag)
